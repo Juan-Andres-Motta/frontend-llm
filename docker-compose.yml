@@ -6,7 +6,7 @@ services:
       context: .
       dockerfile: Dockerfile
     ports:
-      - "8050:80"
+      - "8051:80"
     environment:
       - NODE_ENV=production
       - VITE_BACKEND_URL=http://localhost:8000
