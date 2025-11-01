@@ -5,6 +5,10 @@ FROM node:22-alpine AS builder
 
 WORKDIR /app
 
+# Accept build argument for backend URL
+ARG VITE_BACKEND_URL
+ENV VITE_BACKEND_URL=$VITE_BACKEND_URL
+
 # Install dependencies using the lockfile when available
 COPY package.json package-lock.json* ./
 RUN npm install

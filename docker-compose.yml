@@ -5,8 +5,9 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+      args:
+        VITE_BACKEND_URL: http://localhost:8001
     ports:
       - "8051:80"
     environment:
       - NODE_ENV=production
-      - VITE_BACKEND_URL=http://localhost:8000

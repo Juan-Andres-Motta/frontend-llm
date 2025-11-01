@@ -65,6 +65,7 @@ export const APP_CONFIG = {
   
 };
 
+
 // Sincronizar configuración persistida (si existe) en el momento de carga del módulo
 if (typeof window !== "undefined") {
   const storedDefaultCollection = window.localStorage.getItem(CONFIG_STORAGE_KEYS.DEFAULT_COLLECTION);

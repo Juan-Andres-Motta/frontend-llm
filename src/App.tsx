@@ -14,7 +14,7 @@ import { Helmet } from 'react-helmet-async'
 
 import Layout from '@components/Layout'
 import ErrorBoundary from '@components/ErrorBoundary'
-import { getFullTitle, getActiveTheme } from './config/appConfig'
+import { getFullTitle, getActiveTheme, getBackendUrl } from './config/appConfig'
 import Chat from '@components/Chat'
 import URLUploader from '@components/FileUploader'
 import ConfigurationPanel from '@components/ConfigurationPanel'
@@ -54,6 +54,7 @@ function App() {
   const [tab, setTab] = useState<TabKey>('chat')
   const activeTheme = getActiveTheme()
   const themePrimary = THEMES[activeTheme]?.primary ?? THEMES.blue.primary
+  const backendUrl = getBackendUrl()
 
   return (
     <>
@@ -96,7 +97,7 @@ function App() {
               {tab === 'uploader' && (
                 <div className="rounded-2xl border bg-white shadow-sm p-6 space-y-3">
                   <h2 className="text-lg font-semibold mb-2">Cargar Documentos por URL</h2>
-                  <URLUploader />
+                  <URLUploader baseUrl={backendUrl} />
                 </div>
               )}
 

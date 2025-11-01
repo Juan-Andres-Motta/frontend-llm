@@ -45,10 +45,10 @@ type UploadProcess = {
  * - Validación de entrada y notificaciones en tiempo real
  * - Polling automático para verificar estado del procesamiento
  * 
- * @param baseUrl - URL base del backend (por defecto: http://localhost:8000)
+ * @param baseUrl - URL base del backend
  * @returns JSX.Element
  */
-export default function URLUploader({ baseUrl = "http://localhost:8000" }: URLUploaderProps) {
+export default function URLUploader({ baseUrl }: URLUploaderProps) {
   const { addNotification, updateNotification } = useNotifications();
 
   const updateNotificationRef = useRef(updateNotification);
