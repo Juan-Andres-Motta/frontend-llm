@@ -151,8 +151,27 @@ export const getFullTitle = (): string => {
 /**
  * Genera la URL completa del backend
  */
+const sanitizeBaseUrl = (url: string): string => url.replace(/\/+$/, "");
+
+const sanitizeEndpoint = (endpoint: string): string =>
+  endpoint.startsWith("/") ? endpoint : `/${endpoint}`;
+
+const stripEndpointFromBase = (baseUrl: string, endpoint: string): string => {
+  const normalizedEndpoint = sanitizeEndpoint(endpoint);
+  if (baseUrl.endsWith(normalizedEndpoint)) {
+    const stripped = baseUrl.slice(0, baseUrl.length - normalizedEndpoint.length);
+    return stripped.length > 0 ? sanitizeBaseUrl(stripped) : baseUrl;
+  }
+  return baseUrl;
+};
+
+export const getBackendBaseUrl = (): string => {
+  const normalizedBase = sanitizeBaseUrl(APP_CONFIG.BACKEND_URL);
+  return stripEndpointFromBase(normalizedBase, APP_CONFIG.API_ENDPOINT);
+};
+
 export const getBackendUrl = (): string => {
-  return `${APP_CONFIG.BACKEND_URL}${APP_CONFIG.API_ENDPOINT}`;
+  return `${getBackendBaseUrl()}${sanitizeEndpoint(APP_CONFIG.API_ENDPOINT)}`;
 };
 
 /**
