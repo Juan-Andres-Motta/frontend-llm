@@ -1,0 +1,349 @@
+/**
+ * @fileoverview Estilos Globales de la Aplicación
+ * 
+ * Archivo principal de estilos CSS que define el sistema de diseño de la aplicación.
+ * Incluye variables de tema, componentes personalizados, animaciones y efectos especiales.
+ * Utiliza TailwindCSS como base con personalizaciones específicas para el proyecto.
+ * 
+ * @author Universidad de los Andes
+ * @version 1.0.0
+ */
+
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+/* ========== VARIABLES DE TEMA - SOLO AZUL ========== */
+
+@theme {
+    /**
+   * Paleta de colores primarios - Tonos de azul
+   * Escala completa desde el más claro (50) hasta el más oscuro (950)
+   * Usado para elementos principales como botones, enlaces y acentos
+   */
+    --color-primary-50: #eff6ff;
+    --color-primary-100: #dbeafe;
+    --color-primary-200: #bfdbfe;
+    --color-primary-300: #93c5fd;
+    --color-primary-400: #60a5fa;
+    --color-primary-500: #3b82f6;
+    --color-primary-600: #2563eb;
+    --color-primary-700: #1d4ed8;
+    --color-primary-800: #1e40af;
+    --color-primary-900: #1e3a8a;
+    --color-primary-950: #172554;
+
+    /**
+   * Paleta de colores secundarios - Tonos de cyan/azul claro
+   * Complementa los colores primarios para gradientes y efectos
+   * Usado para elementos secundarios y efectos visuales
+   */
+    --color-secondary-50: #ecfeff;
+    --color-secondary-100: #cffafe;
+    --color-secondary-200: #a5f3fc;
+    --color-secondary-300: #67e8f9;
+    --color-secondary-400: #22d3ee;
+    --color-secondary-500: #06b6d4;
+    --color-secondary-600: #0891b2;
+    --color-secondary-700: #0e7490;
+    --color-secondary-800: #155e75;
+    --color-secondary-900: #164e63;
+    --color-secondary-950: #083344;
+}
+
+/* ========== VARIABLES CSS PERSONALIZADAS ========== */
+
+:root {
+    /**
+   * Variables CSS personalizadas para el tema claro
+   * Define colores semánticos para fondos, textos y elementos de la UI
+   */
+    /* Paleta dinámica controlada desde el gestor de temas */
+    --color-primary: #2baae2;
+    --color-primary-hover: #1e90c7;
+    --color-primary-muted: #1f8cbf;
+    --color-primary-muted-hover: #18739d;
+    --color-primary-light: #7fc5e6;
+    --color-primary-gradient-from: #2baae2;
+    --color-primary-gradient-to: #1f8cbf;
+    --color-primary-rgb: 43, 170, 226;
+    --tw-ring-color: var(--color-primary);
+
+    /* Colores de fondo */
+    --bg-primary: #ffffff;
+    /* Fondo principal de la aplicación */
+    --bg-secondary: #f8fafc;
+    /* Fondo secundario para secciones */
+    --bg-card: #ffffff;
+    /* Fondo para tarjetas y componentes */
+
+    /* Colores de texto */
+    --text-primary: #1e293b;
+    /* Texto principal - alto contraste */
+    --text-secondary: #64748b;
+    /* Texto secundario - contraste medio */
+    --text-muted: #94a3b8;
+    /* Texto atenuado - bajo contraste */
+
+    /* Elementos de separación */
+    --border-color: #e2e8f0;
+    /* Color para bordes y divisores */
+
+    /* Efectos interactivos */
+    --hover-bg: #f1f5f9;
+    /* Fondo para estados hover */
+}
+
+/* ========== MODO OSCURO ========== */
+
+/**
+ * Configuración del tema oscuro
+ * Sobrescribe las variables del tema claro para crear una experiencia nocturna
+ */
+.dark {
+    /* Fondos oscuros */
+    --bg-primary: #0f172a;
+    /* Fondo principal oscuro */
+    --bg-secondary: #1e293b;
+    /* Fondo secundario oscuro */
+    --bg-card: #1e293b;
+    /* Fondo para tarjetas oscuras */
+
+    /* Textos claros para contraste */
+    --text-primary: #f1f5f9;
+    /* Texto principal claro */
+    --text-secondary: #cbd5e1;
+    /* Texto secundario claro */
+    --text-muted: #94a3b8;
+    /* Texto atenuado claro */
+
+    /* Elementos de separación oscuros */
+    --border-color: #334155;
+    /* Bordes oscuros */
+    --hover-bg: #334155;
+    /* Efectos hover oscuros */
+}
+
+/* ========== CLASES UTILITARIAS PERSONALIZADAS ========== */
+
+@layer utilities {
+    /**
+   * Clases utilitarias personalizadas que extienden TailwindCSS
+   * Proporcionan estilos reutilizables específicos del proyecto
+   */
+
+    /* Texto con gradiente azul */
+    .gradient-text {
+        @apply bg-gradient-to-r from-primary-500 to-secondary-500 bg-clip-text text-transparent;
+    }
+
+    /* Contenedor responsivo personalizado */
+    .container-custom {
+        @apply container mx-auto px-4 sm:px-6 lg:px-8;
+    }
+
+    /* Estilos base para botones */
+    .btn {
+        @apply px-6 py-3 rounded-lg font-semibold transition-all duration-300 transform;
+    }
+
+    /* Botón primario con gradiente y efectos hover */
+    .btn-primary {
+        @apply bg-gradient-to-r from-primary-500 to-secondary-500 hover:from-primary-600 hover:to-secondary-600 text-white shadow-lg hover:shadow-xl hover:scale-105;
+    }
+
+    /* Botón secundario con borde y efectos hover */
+    .btn-secondary {
+        @apply border-2 border-primary-500 text-primary-500 hover:bg-primary-500 hover:text-white;
+    }
+}
+
+/* ========== COMPONENTES PERSONALIZADOS ========== */
+
+@layer components {
+    /**
+   * Componentes personalizados reutilizables
+   * Define estilos para elementos comunes de la UI
+   */
+
+    /* Tarjetas con efectos hover y transiciones suaves */
+    .card {
+        @apply rounded-xl p-6 transition-all duration-300;
+        background-color: var(--bg-card);
+        border: 1px solid var(--border-color);
+    }
+
+    .card:hover {
+        @apply shadow-lg transform -translate-y-1;
+    }
+
+    /* Efecto glassmorphism con tonos azules */
+    .glass-effect {
+        @apply backdrop-blur-lg border border-primary-200/20;
+        background: rgba(var(--color-primary-rgb), 0.15);
+    }
+
+    /* Sombras personalizadas con tinte azul */
+    .shadow-blue {
+        box-shadow: 0 10px 25px rgba(var(--color-primary-rgb), 0.22);
+    }
+
+    .shadow-blue-lg {
+        box-shadow: 0 20px 40px rgba(var(--color-primary-rgb), 0.28);
+    }
+}
+
+/* ========== ANIMACIONES ========== */
+
+@layer utilities {
+    /**
+   * Clases de animación personalizadas
+   * Proporcionan efectos de transición suaves y atractivos
+   */
+
+    /* Animación de aparición gradual */
+    .fade-in {
+        animation: fadeIn 0.6s ease-out;
+    }
+
+    /* Animación de deslizamiento hacia arriba */
+    .slide-up {
+        animation: slideUp 0.6s ease-out;
+    }
+
+    /* Animación de escalado desde el centro */
+    .scale-in {
+        animation: scaleIn 0.4s ease-out;
+    }
+
+    /* Efecto de pulso con color azul */
+    .pulse-blue {
+        animation: pulseBlue 2s infinite;
+    }
+}
+
+/**
+ * Definiciones de keyframes para las animaciones personalizadas
+ */
+
+/* Animación de aparición gradual */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+/* Animación de deslizamiento desde abajo */
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Animación de escalado desde el centro */
+@keyframes scaleIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Efecto de pulso con sombra azul */
+@keyframes pulseBlue {
+
+    0%,
+    100% {
+        box-shadow: 0 0 0 0 rgba(var(--color-primary-rgb), 0.6);
+    }
+
+    70% {
+        box-shadow: 0 0 0 10px rgba(var(--color-primary-rgb), 0);
+    }
+}
+
+/* ========== EFECTOS ESPECIALES ========== */
+
+/**
+ * Efectos visuales avanzados para mejorar la experiencia del usuario
+ */
+
+/* Efecto de brillo deslizante en hover */
+.shine-effect {
+    position: relative;
+    overflow: hidden;
+}
+
+.shine-effect::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg,
+            transparent,
+            rgba(var(--color-primary-rgb), 0.2),
+            transparent);
+    transform: rotate(45deg) translate(-100%, -100%);
+    transition: transform 0.6s;
+}
+
+.shine-effect:hover::before {
+    transform: rotate(45deg) translate(100%, 100%);
+}
+
+/* Scrollbar personalizada con tema azul */
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg-secondary);
+    border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg,
+            var(--color-primary),
+            var(--color-primary-muted));
+    border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg,
+            var(--color-primary-hover),
+            var(--color-primary-muted-hover));
+}
+
+/* ========== MEJORAS RESPONSIVAS ========== */
+
+/**
+ * Ajustes específicos para diferentes tamaños de pantalla
+ * Optimiza la experiencia en dispositivos móviles
+ */
+
+/* Optimizaciones para pantallas pequeñas */
+@media (max-width: 640px) {
+    .gradient-text {
+        @apply text-primary-600;
+        background: none;
+        -webkit-background-clip: unset;
+        background-clip: unset;
+        -webkit-text-fill-color: unset;
+    }
+}
